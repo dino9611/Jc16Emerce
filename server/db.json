@@ -1,0 +1,47 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "1234",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "username": "dino",
+      "password": "1234",
+      "role": "users"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Avanza bla",
+      "image": "https://i0.wp.com/www.sewamobilbali1st.com/wp-content/uploads/2015/06/Sewa-Mobil-Toyota-Avanza-di-Bali-Dengan-Sopir-New-2015.jpg?resize=705%2C397&ssl=1",
+      "tahun": 2017,
+      "harga": 80,
+      "deskripsi": "mobil ggwp"
+    },
+    {
+      "id": 2,
+      "name": "Vespa matic",
+      "image": "https://www.blibli.com/friends/assets/2020/10/vespa-5537949_1920-1024x666.jpg",
+      "tahun": 2018,
+      "harga": 20,
+      "deskripsi": "vespa tiktok"
+    }
+  ],
+  "cart": [],
+  "transaksi": [],
+  "transaksidetail": [],
+  "bank": [
+    {
+      "id": 1,
+      "nama": "Bca"
+    },
+    {
+      "id": 2,
+      "nama": "Mandiri"
+    }
+  ]
+}
