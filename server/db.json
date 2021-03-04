@@ -20,7 +20,8 @@
       "image": "https://i0.wp.com/www.sewamobilbali1st.com/wp-content/uploads/2015/06/Sewa-Mobil-Toyota-Avanza-di-Bali-Dengan-Sopir-New-2015.jpg?resize=705%2C397&ssl=1",
       "tahun": 2017,
       "harga": 80,
-      "deskripsi": "mobil ggwp"
+      "deskripsi": "mobil ggwp",
+      "categoryId": 1
     },
     {
       "id": 2,
@@ -28,13 +29,23 @@
       "image": "https://www.blibli.com/friends/assets/2020/10/vespa-5537949_1920-1024x666.jpg",
       "tahun": 2018,
       "harga": 20,
-      "deskripsi": "vespa tiktok"
+      "deskripsi": "vespa tiktok",
+      "categoryId": 2
+    },
+    {
+      "name": "Motor Classic aja",
+      "image": "https://cdn0-production-images-kly.akamaized.net/C5J8irE5lsJjSLe6mmjPStPMbU8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2161103/original/026204800_1525529755-2.jpg",
+      "tahun": "2016",
+      "harga": "22.4",
+      "deskripsi": "MOtor \nbebas Banjir \nmulus broo!!!",
+      "categoryId": "2",
+      "id": 3
     }
   ],
-  "cart": [],
-  "transaksi": [],
-  "transaksidetail": [],
-  "bank": [
+  "carts": [],
+  "transactions": [],
+  "transactionsdetails": [],
+  "banks": [
     {
       "id": 1,
       "nama": "Bca"
@@ -42,6 +53,16 @@
     {
       "id": 2,
       "nama": "Mandiri"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "nama": "mobil"
+    },
+    {
+      "id": 2,
+      "nama": "motor"
     }
   ]
 }

@@ -14,7 +14,7 @@ import {
 } from "reactstrap";
 import "./header.css";
 import { FaMotorcycle, FaCartArrowDown } from "react-icons/fa";
-
+import { Link } from "react-router-dom";
 class Header extends Component {
   state = {
     isOpen: false,
@@ -29,7 +29,7 @@ class Header extends Component {
           <NavbarBrand href="/">
             <span
               className="font-weight-bold header-brand"
-              style={{ color: "#ff8f54" }}
+              style={{ color: "#FBAB7E" }}
             >
               <FaMotorcycle /> MotoLI
             </span>
@@ -37,7 +37,7 @@ class Header extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              {false ? (
+              {true ? (
                 <>
                   <NavItem className="py-2 mx-2">History</NavItem>
                   <NavItem className="py-2 mx-2">
@@ -47,7 +47,7 @@ class Header extends Component {
                         position: "relative",
                         bottom: 10,
                         right: 5,
-                        backgroundColor: "#ff8f54",
+                        backgroundColor: "#fbab7e",
                       }}
                       className="px-1 rounded-circle text-center"
                     >
@@ -57,7 +57,9 @@ class Header extends Component {
                   <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav> Nama user</DropdownToggle>
                     <DropdownMenu right>
-                      <DropdownItem>Option 1</DropdownItem>
+                      <Link to="/manageProd" className="normal-link">
+                        <DropdownItem>Manage Product</DropdownItem>
+                      </Link>
                       <DropdownItem>Option 2</DropdownItem>
                       <DropdownItem divider />
                       <DropdownItem>Reset</DropdownItem>
@@ -67,7 +69,7 @@ class Header extends Component {
               ) : (
                 <>
                   <NavItem className="mx-2">
-                    <button className="header-login rounded px-4 py-2 font-weight-bold">
+                    <button className=" bg-tombol rounded px-4 py-2 font-weight-bold">
                       Login
                     </button>
                   </NavItem>

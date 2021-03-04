@@ -11,6 +11,14 @@
   border: black solid 2px;
 }
 .header-login:hover {
-  border-color: #ff8f54;
-  color: #ff8f54;
+  border-color: #fbab7e;
+  color: #fbab7e;
+}
+
+.normal-link {
+  text-decoration: none;
+}
+.normal-link:hover {
+  text-decoration: none;
+  /* color: #fbab7e !importan; */
 }
