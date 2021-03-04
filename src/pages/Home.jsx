@@ -7,7 +7,7 @@ class Home extends Component {
     return (
       <div>
         <Header />
-        <h1>dsdasdsad</h1>
+        <h1>INI HOME</h1>
       </div>
     );
   }

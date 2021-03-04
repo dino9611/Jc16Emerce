@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./notfound.css";
-
+import { Link } from "react-router-dom";
 class NotFound extends Component {
   state = {};
   render() {
@@ -15,7 +15,7 @@ class NotFound extends Component {
             The page you are looking for might have been removed had its name
             changed or is temporarily unavailable.
           </p>
-          <a href="#">home page</a>
+          <Link to="/">home page</Link>
         </div>
       </div>
     );

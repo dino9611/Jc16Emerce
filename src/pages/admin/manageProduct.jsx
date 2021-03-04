@@ -11,13 +11,12 @@ import {
   Button as ButtonStrap,
   Pagination,
   PaginationItem,
-  PaginationLink,
 } from "reactstrap";
 import axios from "axios";
 import { API_URL, currencyFormatter } from "../../helper";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
-
+import Loading from "./../../components/loading";
 import withReactContent from "sweetalert2-react-content";
 
 const Myswal = withReactContent(Swal);
@@ -38,6 +37,8 @@ class ManageProduct extends Component {
     page: 1,
     totaldata: 0,
     limit: 2,
+    isLoading: true,
+    nameSearch: "",
   };
 
   componentDidMount() {
@@ -53,6 +54,7 @@ class ManageProduct extends Component {
               products: res.data,
               categories: res1.data,
               totaldata: res.headers["x-total-count"],
+              isLoading: false,
             });
           })
           .catch((err) => {
@@ -82,6 +84,20 @@ class ManageProduct extends Component {
   }
 
   renderProducts = () => {
+    if (this.state.products.length === 0) {
+      return (
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{
+            height: "63vh",
+            width: "243%",
+            backgroundColor: "lightgray",
+          }}
+        >
+          <h1>Data Tidak Ditemukan</h1>
+        </div>
+      );
+    }
     return this.state.products.map((val, index) => {
       let x = 2 * (this.state.page - 1);
       return (
@@ -126,16 +142,16 @@ class ManageProduct extends Component {
     let berapaPaging = Math.ceil(totaldata / limit);
     let paging = [];
     for (let i = 0; i < berapaPaging; i++) {
-      if (i + 1 == page) {
+      if (i + 1 === page) {
         paging.push(
           <PaginationItem active>
-            <PaginationLink>{i + 1}</PaginationLink>
+            <button className="btn btn-primary">{i + 1}</button>
           </PaginationItem>
         );
       } else {
         paging.push(
           <PaginationItem onClick={() => this.setState({ page: i + 1 })}>
-            <PaginationLink>{i + 1}</PaginationLink>
+            <button className="btn btn-outline-primary">{i + 1}</button>
           </PaginationItem>
         );
       }
@@ -201,7 +217,7 @@ class ManageProduct extends Component {
   OnDeleteClick = (index) => {
     let id = this.state.products[index].id;
     let namaProd = this.state.products[index].name;
-    Swal.fire({
+    Myswal.fire({
       title: `Are you sure wanna Delete ${namaProd} ?`,
       text: "You won't be able to revert this!",
       icon: "warning",
@@ -220,7 +236,11 @@ class ManageProduct extends Component {
               )
               .then((res) => {
                 this.setState({ products: res.data });
-                Swal.fire("Deleted!", "Your file has been deleted.", "success");
+                Myswal.fire(
+                  "Deleted!",
+                  "Your file has been deleted.",
+                  "success"
+                );
               })
               .catch((err) => {
                 console.log(err);
@@ -233,7 +253,33 @@ class ManageProduct extends Component {
     });
   };
 
+  onSearchChange = (e) => {
+    this.setState({ nameSearch: e.target.value });
+    axios
+      .get(
+        `${API_URL}/products?_expand=category&_page=1&_limit=2&name_like=${e.target.value}`
+      )
+      .then((res) => {
+        this.setState({
+          products: res.data,
+          totaldata: res.headers["x-total-count"],
+          page: 1,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
+    if (this.state.isLoading) {
+      return (
+        <div>
+          <Header />
+          <Loading />
+        </div>
+      );
+    }
     return (
       <div>
         <Header />
@@ -317,9 +363,11 @@ class ManageProduct extends Component {
               type="search"
               className="form-control"
               placeholder="nama products"
+              value={this.state.nameSearch}
+              onChange={this.onSearchChange}
             />
           </div>
-          <Table className="mt-3" striped>
+          <Table className="mt-3 w-100" striped>
             <thead>
               <tr>
                 <th>No.</th>
