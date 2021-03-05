@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import axios from "axios";
 import NotFound from "./pages/notfound";
 import Home from "./pages/Home";
@@ -62,6 +62,43 @@ class App extends Component {
       </div>
     );
   }
-}
 
-export default connect(null, { LoginAction })(App);
+  // render() {
+  //   if (this.state.isLoading) {
+  //     return <Loading />;
+  //   }
+
+  //     if (this.props.dataUser.role == "admin") {
+  //       return (
+  //         <div>
+  //           <Switch>
+  //             <Route path="/" exact component={Home} />
+
+  //             <Route path="/manageProd" exact component={ManageProduct} />
+
+  //             <Route path="/login" exact component={Login} />
+
+  //             <Route path="*" component={NotFound} />
+  //           </Switch>
+  //         </div>
+  //       );
+  //     }
+  //     return (
+  //       <div>
+  //         <Switch>
+  //           <Route path="/" exact component={Home} />
+
+  //           <Route path="/login" exact component={Login} />
+
+  //           <Route path="*" component={NotFound} />
+  //         </Switch>
+  //       </div>
+  //     );
+  //   }
+}
+const MaptstatetoProps = (state) => {
+  return {
+    dataUser: state.Auth,
+  };
+};
+export default connect(MaptstatetoProps, { LoginAction })(App);
