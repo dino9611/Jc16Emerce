@@ -11,10 +11,10 @@ export const LoginAction = (input) => {
 
 // TODO Register
 //? 1. input username, password , comfirm password dimana punya besar dan kecil minimal 6 char
-//? 2. sama atau nggak pass dan confirmpass jika beda jangan dilanjutkan kasih tau user untuk ubah
+//? 2. sama atau nggak pass dan confirmpass, jika beda jangan dilanjutkan kasih tau user untuk ubah
 //? 3. di cek di axios bahwa username sudah digunakan atau tidak
 //? 4. jika sudah digunakan maka kasih tau user bahwa username telah dipakai, jika tidak lanjutkan ke step 5
-//? 5. post data  ke json data users
+//? 5. post data  ke json-server data users
 //? 6. jika berhasil, redirect langsung ke home dengan cara mengupdate data Auth reducers sama seperti Login
 //?. cat: jangan lupa set localstroge seperti login agar dia bisa keep login
 

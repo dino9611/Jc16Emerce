@@ -13,6 +13,37 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Alert } from "reactstrap";
 import Loader from "react-loader-spinner";
+import { withStyles } from "@material-ui/core/styles";
+import IconButton from "@material-ui/core/IconButton";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+
+import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+
+import FormControl from "@material-ui/core/FormControl";
+
+const Style = {
+  root: {
+    "& label.Mui-focused": {
+      color: "#fbab7e",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#fbab7e",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#fbab7e",
+      },
+      "&:hover fieldset": {
+        borderColor: "#fbab7e",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#fbab7e",
+      },
+    },
+  },
+};
+
 class Login extends Component {
   state = {
     isVisible: false,
@@ -56,6 +87,7 @@ class Login extends Component {
   };
 
   render() {
+    const { classes } = this.props;
     if (this.props.dataUser.islogin) {
       return <Redirect to="/" />;
     }
@@ -79,8 +111,44 @@ class Login extends Component {
                   onChange={this.onInputChange}
                   value={this.state.username}
                 />
-
-                <div className="d-flex">
+                <FormControl variant="outlined" className={classes.root}>
+                  <InputLabel
+                    className="warna"
+                    htmlFor="outlined-adornment-password"
+                  >
+                    Password
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    type={this.state.isVisible ? "text" : "password"}
+                    value={this.state.password}
+                    onChange={this.onInputChange}
+                    name="password"
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={this.toggle}
+                          // onMouseDown={handleMouseDownPassword}
+                        >
+                          {this.state.isVisible ? (
+                            <AiFillEye
+                              style={{ color: "#fbab7e" }}
+                              // onClick={this.toggle}
+                            />
+                          ) : (
+                            <AiFillEyeInvisible
+                              style={{ color: "#9f9f9f" }}
+                              // onClick={this.toggle}
+                            />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    labelWidth={70}
+                  />
+                </FormControl>
+                {/* <div className="d-flex">
                   <input
                     type={this.state.isVisible ? "text" : "password"}
                     className=" form-control  mt-3"
@@ -102,7 +170,7 @@ class Login extends Component {
                       />
                     )}
                   </div>
-                </div>
+                </div> */}
 
                 <div className="mt-3 ">
                   {this.props.dataUser.loading ? (
@@ -139,8 +207,10 @@ const MaptstatetoProps = (state) => {
   };
 };
 
-export default connect(MaptstatetoProps, {
-  LoginAction,
-  LoginActionThunk,
-  ResetActionthunk,
-})(Login);
+export default withStyles(Style)(
+  connect(MaptstatetoProps, {
+    LoginAction,
+    LoginActionThunk,
+    ResetActionthunk,
+  })(Login)
+);
