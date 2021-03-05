@@ -18,7 +18,8 @@ import { FaTrash, FaEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import Loading from "./../../components/loading";
 import withReactContent from "sweetalert2-react-content";
-
+import { connect } from "react-redux";
+import NotFound from "../notfound";
 const Myswal = withReactContent(Swal);
 
 class ManageProduct extends Component {
@@ -182,7 +183,8 @@ class ManageProduct extends Component {
     if (name && categoryId && deskripsi && harga && tahun && image) {
       axios
         .post(`${API_URL}/products`, dataPost) //* datapost sudah object param ke 2 harus obj
-        .then(() => {
+        .then((res1) => {
+          console.log(res1);
           axios
             .get(
               `${API_URL}/products?_expand=category&_page=${this.state.page}&_limit=2`
@@ -272,6 +274,9 @@ class ManageProduct extends Component {
   };
 
   render() {
+    if (this.props.dataUser.role !== "admin") {
+      return <NotFound />;
+    }
     if (this.state.isLoading) {
       return (
         <div>
@@ -390,5 +395,9 @@ class ManageProduct extends Component {
     );
   }
 }
-
-export default ManageProduct;
+const MaptstatetoProps = (state) => {
+  return {
+    dataUser: state.Auth,
+  };
+};
+export default connect(MaptstatetoProps)(ManageProduct);

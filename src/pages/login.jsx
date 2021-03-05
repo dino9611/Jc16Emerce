@@ -4,10 +4,15 @@ import Button from "./../components/button";
 import axios from "axios";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { API_URL } from "./../helper";
-import { LoginAction } from "./../redux/actions";
+import {
+  LoginAction,
+  LoginActionThunk,
+  ResetActionthunk,
+} from "./../redux/actions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-
+import { Alert } from "reactstrap";
+import Loader from "react-loader-spinner";
 class Login extends Component {
   state = {
     isVisible: false,
@@ -27,20 +32,27 @@ class Login extends Component {
     e.preventDefault();
     console.log(this.state.username);
     const { username, password } = this.state;
+
     // tanpa thunk
-    axios
-      .get(`${API_URL}/users?username=${username}&password=${password}`)
-      .then((res) => {
-        if (res.data.length) {
-          localStorage.setItem("id", res.data[0].id);
-          this.props.LoginAction(res.data[0]);
-        } else {
-          alert("toastfy user tidak ditemukan");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // axios
+    //   .get(`${API_URL}/users?username=${username}&password=${password}`)
+    //   .then((res) => {
+    //     if (res.data.length) {
+    //       localStorage.setItem("id", res.data[0].id);
+    //       this.props.LoginAction(res.data[0]);
+    //     } else {
+    //       alert("toastfy user tidak ditemukan");
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    // * with thunk
+    var data = {
+      username: username,
+      password,
+    };
+    this.props.LoginActionThunk(data);
   };
 
   render() {
@@ -67,32 +79,51 @@ class Login extends Component {
                   onChange={this.onInputChange}
                   value={this.state.username}
                 />
-                <input
-                  type={this.state.isVisible ? "text" : "password"}
-                  className=" form-control mt-3"
-                  placeholder="password"
-                  name="password"
-                  onChange={this.onInputChange}
-                  value={this.state.password}
-                />
-                <div className="float-right mt-2 ">
-                  {this.state.isVisible ? (
-                    <AiFillEye
-                      style={{ fontSize: "1.5em", color: "#fbab7e" }}
-                      onClick={this.toggle}
-                    />
+
+                <div className="d-flex">
+                  <input
+                    type={this.state.isVisible ? "text" : "password"}
+                    className=" form-control  mt-3"
+                    placeholder="password"
+                    name="password"
+                    onChange={this.onInputChange}
+                    value={this.state.password}
+                  />
+                  <div style={{ paddingTop: 20, paddingLeft: 5 }}>
+                    {this.state.isVisible ? (
+                      <AiFillEye
+                        style={{ fontSize: "1.5em", color: "#fbab7e" }}
+                        onClick={this.toggle}
+                      />
+                    ) : (
+                      <AiFillEyeInvisible
+                        style={{ fontSize: "1.5em", color: "#9f9f9f" }}
+                        onClick={this.toggle}
+                      />
+                    )}
+                  </div>
+                </div>
+
+                <div className="mt-3 ">
+                  {this.props.dataUser.loading ? (
+                    <Loader type="Rings" color="#fbab7e" />
                   ) : (
-                    <AiFillEyeInvisible
-                      style={{ fontSize: "1.5em", color: "#9f9f9f" }}
-                      onClick={this.toggle}
-                    />
+                    <Button submit={true} className="px-4 py-2 w-50 ">
+                      Login
+                    </Button>
                   )}
                 </div>
-                <div className="mt-3 ">
-                  <Button submit={true} className="px-4 py-2 w-50 ">
-                    Login
-                  </Button>
-                </div>
+                {this.props.dataUser.error ? (
+                  <Alert color="danger mt-2">
+                    {this.props.dataUser.error}{" "}
+                    <span
+                      className="float-right"
+                      onClick={this.props.ResetActionthunk}
+                    >
+                      X
+                    </span>
+                  </Alert>
+                ) : null}
               </form>
             </div>
           </div>
@@ -108,4 +139,8 @@ const MaptstatetoProps = (state) => {
   };
 };
 
-export default connect(MaptstatetoProps, { LoginAction })(Login);
+export default connect(MaptstatetoProps, {
+  LoginAction,
+  LoginActionThunk,
+  ResetActionthunk,
+})(Login);

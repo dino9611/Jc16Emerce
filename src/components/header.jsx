@@ -60,9 +60,11 @@ class Header extends Component {
                       {this.props.dataUser.username}
                     </DropdownToggle>
                     <DropdownMenu right>
-                      <Link to="/manageProd" className="normal-link">
-                        <DropdownItem>Manage Product</DropdownItem>
-                      </Link>
+                      {this.props.dataUser.role === "admin" ? (
+                        <Link to="/manageProd" className="normal-link">
+                          <DropdownItem>Manage Product</DropdownItem>
+                        </Link>
+                      ) : null}
                       <DropdownItem>Option 2</DropdownItem>
                       <DropdownItem divider />
                       <DropdownItem>Reset</DropdownItem>

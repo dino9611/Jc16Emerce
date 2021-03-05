@@ -4,12 +4,26 @@ const INITIAL_STATE = {
   password: "",
   role: "",
   islogin: false,
+  loading: false,
+  error: "",
 };
 
 const AuthReducers = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case "LOGIN":
-      return { ...state, ...action.payload, islogin: true };
+      return {
+        ...state,
+        ...action.payload,
+        islogin: true,
+        loading: false,
+        error: "",
+      };
+    case "LOADING":
+      return { ...state, loading: true };
+    case "ERROR":
+      return { ...state, error: action.error, loading: false };
+    case "RESET":
+      return { ...state, error: "", loading: false };
     default:
       return state;
   }

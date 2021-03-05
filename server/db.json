@@ -40,6 +40,15 @@
       "deskripsi": "MOtor \nbebas Banjir \nmulus broo!!!",
       "categoryId": "2",
       "id": 3
+    },
+    {
+      "name": "sdadas",
+      "image": "dsadasd",
+      "tahun": "1234",
+      "harga": "123",
+      "deskripsi": "dsadasdasdsad",
+      "categoryId": "1",
+      "id": 4
     }
   ],
   "carts": [],

@@ -6,10 +6,14 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import reducers from "./redux/reducers";
+import Thunk from "redux-thunk";
 
-const store = createStore(reducers);
+// * thunk digunakan untuk membuat function yang ada didalam action bisa menjalankan function asyncronous
+// * contohnya axios, thunk sendiri itu adalah sebuah middleware didalam redux
+
+const store = createStore(reducers, {}, applyMiddleware(Thunk));
 
 ReactDOM.render(
   <Provider store={store}>

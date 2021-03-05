@@ -34,6 +34,7 @@ class App extends Component {
     axios
       .get(`${API_URL}/users/${id}`)
       .then((res) => {
+        console.log(res);
         this.props.LoginAction(res.data);
         //* digantikan difinally this.setState({ isLoading: false });
       })
