@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 const AuthReducers = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case "LOGIN":
-      return state;
+      return { ...state, ...action.payload, islogin: true };
     default:
       return state;
   }

@@ -15,6 +15,7 @@ import {
 import "./header.css";
 import { FaMotorcycle, FaCartArrowDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 class Header extends Component {
   state = {
     isOpen: false,
@@ -37,7 +38,7 @@ class Header extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              {true ? (
+              {this.props.dataUser.islogin ? (
                 <>
                   <NavItem className="py-2 mx-2">History</NavItem>
                   <NavItem className="py-2 mx-2">
@@ -55,7 +56,9 @@ class Header extends Component {
                     </Badge>
                   </NavItem>
                   <UncontrolledDropdown nav inNavbar>
-                    <DropdownToggle nav> Nama user</DropdownToggle>
+                    <DropdownToggle nav>
+                      {this.props.dataUser.username}
+                    </DropdownToggle>
                     <DropdownMenu right>
                       <Link to="/manageProd" className="normal-link">
                         <DropdownItem>Manage Product</DropdownItem>
@@ -69,9 +72,11 @@ class Header extends Component {
               ) : (
                 <>
                   <NavItem className="mx-2">
-                    <button className=" bg-tombol rounded px-4 py-2 font-weight-bold">
-                      Login
-                    </button>
+                    <Link to="/login">
+                      <button className=" bg-tombol rounded px-4 py-2 font-weight-bold">
+                        Login
+                      </button>
+                    </Link>
                   </NavItem>
                   <NavItem className="mx-2">
                     <button className="header-login rounded px-4 py-2 font-weight-bold">
@@ -88,4 +93,10 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const MaptstatetoProps = (state) => {
+  return {
+    dataUser: state.Auth,
+  };
+};
+
+export default connect(MaptstatetoProps)(Header);

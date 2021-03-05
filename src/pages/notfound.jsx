@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./notfound.css";
+import "./styles/notfound.css";
 import { Link } from "react-router-dom";
 class NotFound extends Component {
   state = {};
