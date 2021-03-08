@@ -7,7 +7,7 @@ class Home extends Component {
     return (
       <div>
         <Header />
-        <h1>INI HOME</h1>
+        <div className="container mt-5"></div>
       </div>
     );
   }

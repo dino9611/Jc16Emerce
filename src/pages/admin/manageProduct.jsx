@@ -37,7 +37,7 @@ class ManageProduct extends Component {
     modalAdd: false,
     page: 1,
     totaldata: 0,
-    limit: 2,
+    limit: 5,
     isLoading: true,
     nameSearch: "",
   };
@@ -45,7 +45,7 @@ class ManageProduct extends Component {
   componentDidMount() {
     axios
       .get(
-        `${API_URL}/products?_expand=category&_page=${this.state.page}&_limit=2 `
+        `${API_URL}/products?_expand=category&_page=${this.state.page}&_limit=5 `
       )
       .then((res) => {
         axios
@@ -71,7 +71,7 @@ class ManageProduct extends Component {
     if (this.state.page !== prevstate.page) {
       axios
         .get(
-          `${API_URL}/products?_expand=category&_page=${this.state.page}&_limit=2 `
+          `${API_URL}/products?_expand=category&_page=${this.state.page}&_limit=5 `
         )
         .then((res) => {
           this.setState({
@@ -100,7 +100,7 @@ class ManageProduct extends Component {
       );
     }
     return this.state.products.map((val, index) => {
-      let x = 2 * (this.state.page - 1);
+      let x = 5 * (this.state.page - 1);
       return (
         <tr key={val.id}>
           <td width="100px">{x + index + 1}</td>
@@ -187,7 +187,7 @@ class ManageProduct extends Component {
           console.log(res1);
           axios
             .get(
-              `${API_URL}/products?_expand=category&_page=${this.state.page}&_limit=2`
+              `${API_URL}/products?_expand=category&_page=${this.state.page}&_limit=5`
             )
             .then((res) => {
               var obj = {
@@ -200,6 +200,7 @@ class ManageProduct extends Component {
               };
               this.setState({
                 products: res.data,
+                totaldata: res.headers["x-total-count"],
                 modalAdd: false,
                 AddData: obj,
               });
@@ -234,7 +235,7 @@ class ManageProduct extends Component {
           .then(() => {
             axios
               .get(
-                `${API_URL}/products?_expand=category&_page=${this.state.page}&_limit=2`
+                `${API_URL}/products?_expand=category&_page=${this.state.page}&_limit=5`
               )
               .then((res) => {
                 this.setState({ products: res.data });
@@ -259,7 +260,7 @@ class ManageProduct extends Component {
     this.setState({ nameSearch: e.target.value });
     axios
       .get(
-        `${API_URL}/products?_expand=category&_page=1&_limit=2&name_like=${e.target.value}`
+        `${API_URL}/products?_expand=category&_page=1&_limit=5&name_like=${e.target.value}`
       )
       .then((res) => {
         this.setState({

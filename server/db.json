@@ -42,13 +42,67 @@
       "id": 3
     },
     {
-      "name": "sdadas",
-      "image": "dsadasd",
-      "tahun": "1234",
-      "harga": "123",
-      "deskripsi": "dsadasdasdsad",
+      "name": "Terios",
+      "image": "https://imgcdnblog.carbay.com/wp-content/uploads/2020/09/23203511/Daihatsu-Terios-X-MT-500x333.jpg",
+      "tahun": "2020",
+      "harga": "200",
+      "deskripsi": "Mobil Terios mantap",
       "categoryId": "1",
       "id": 4
+    },
+    {
+      "name": "xenia",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/1b/2016_Daihatsu_Xenia_1.0_M_wagon_%28F650RV%3B_01-27-2019%29%2C_South_Tangerang.jpg",
+      "tahun": "2021",
+      "harga": "100",
+      "deskripsi": "mobil mantap",
+      "categoryId": "1",
+      "id": 5
+    },
+    {
+      "name": "supra x125",
+      "image": "https://awsimages.detik.net.id/community/media/visual/2020/09/01/honda-supra-x-125.jpeg?w=700&q=90",
+      "tahun": "2015",
+      "harga": "8",
+      "deskripsi": "Motor Honda Warna merah",
+      "categoryId": "2",
+      "id": 6
+    },
+    {
+      "name": "mio Yamaha",
+      "image": "https://imgx.gridoto.com/crop/5x0:689x452/700x465/photo/2019/10/04/2998515980.png",
+      "tahun": "2012",
+      "harga": "6",
+      "deskripsi": "Mio Untuk orang kece",
+      "categoryId": "2",
+      "id": 7
+    },
+    {
+      "name": "Mio 125",
+      "image": "https://ecs7.tokopedia.net/img/cache/700/product-1/2020/5/16/101164598/101164598_faa874bd-5a34-4f65-8afe-1cdb96c6fee1_1080_1080",
+      "tahun": "2019",
+      "harga": "20",
+      "deskripsi": "motor mio keren",
+      "categoryId": "2",
+      "id": 8
+    },
+    {
+      "name": "xtrail",
+      "image": "https://imgx.gridoto.com/crop/31x0:751x390/700x465/photo/gridoto/2018/03/11/4103209711.jpg",
+      "tahun": "2015",
+      "harga": "109.4",
+      "deskripsi": "mobil kece",
+      "categoryId": "1",
+      "id": 9
+    },
+    {
+      "name": "Brio",
+      "image": "https://s4.bukalapak.com/uploads/content_attachment/4a311f3150e8d762483b77c5/w-744/lI1qp44gqRabTV2zH03x_honda_id_banner_web_brio_3_final_08c.jpg",
+      "tahun": "2020",
+      "harga": "120",
+      "deskripsi": "brio mobil semua orang",
+      "categoryId": "1",
+      "id": 10
     }
   ],
   "carts": [],

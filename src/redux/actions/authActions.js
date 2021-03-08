@@ -34,7 +34,7 @@ export const LoginActionThunk = (input) => {
         }
       })
       .catch((err) => {
-        console.log(err.response.statusText);
+        // console.log(err.response.statusText);
         dispatch({ type: "ERROR", error: "server error" });
       });
   };

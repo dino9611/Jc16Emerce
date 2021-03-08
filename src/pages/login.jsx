@@ -111,6 +111,7 @@ class Login extends Component {
                   onChange={this.onInputChange}
                   value={this.state.username}
                 />
+                {/* material ui */}
                 <FormControl variant="outlined" className={classes.root}>
                   <InputLabel
                     className="warna"
@@ -148,6 +149,7 @@ class Login extends Component {
                     labelWidth={70}
                   />
                 </FormControl>
+                {/* react strap */}
                 {/* <div className="d-flex">
                   <input
                     type={this.state.isVisible ? "text" : "password"}
