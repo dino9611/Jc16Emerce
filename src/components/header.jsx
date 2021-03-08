@@ -73,7 +73,8 @@ class Header extends Component {
                       ) : null}
                       <DropdownItem>Option 2</DropdownItem>
                       <DropdownItem divider />
-                      <DropdownItem>Reset</DropdownItem>
+
+                      <DropdownItem>LogOut</DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>
                 </>
@@ -87,9 +88,11 @@ class Header extends Component {
                     </Link>
                   </NavItem>
                   <NavItem className="mx-2">
-                    <button className="header-login rounded px-4 py-2 font-weight-bold">
-                      Sign Up
-                    </button>
+                    <Link to="/register">
+                      <button className="header-login rounded px-4 py-2 font-weight-bold">
+                        Sign Up
+                      </button>
+                    </Link>
                   </NavItem>
                 </>
               )}

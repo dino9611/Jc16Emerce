@@ -25,6 +25,8 @@ const AuthReducers = (state = INITIAL_STATE, action) => {
       return { ...state, error: action.error, loading: false };
     case "RESET":
       return { ...state, error: "", loading: false };
+    case "LOGOUT":
+      return INITIAL_STATE;
     default:
       return state;
   }

@@ -11,6 +11,30 @@
       "username": "dino",
       "password": "1234",
       "role": "users"
+    },
+    {
+      "username": "willy",
+      "password": "1234",
+      "role": "users",
+      "id": 3
+    },
+    {
+      "username": "zul",
+      "password": "1234",
+      "role": "users",
+      "id": 4
+    },
+    {
+      "username": "riko",
+      "password": "1234",
+      "role": "users",
+      "id": 5
+    },
+    {
+      "username": "caiyo",
+      "password": "1234",
+      "role": "users",
+      "id": 6
     }
   ],
   "products": [

@@ -8,7 +8,28 @@ export const LoginAction = (input) => {
     payload: input,
   };
 };
+export const ResetAction = () => {
+  return {
+    type: "RESET",
+  };
+};
+export const ResetActionthunk = () => {
+  return (dispatch) => {
+    dispatch({ type: "RESET" });
+  };
+};
 
+export const ErrorAction = (errmess) => {
+  return {
+    type: "ERROR",
+    error: errmess,
+  };
+};
+export const LoadingAction = () => {
+  return {
+    type: "LOADING",
+  };
+};
 // TODO Register
 //? 1. input username, password , comfirm password dimana punya besar dan kecil minimal 6 char
 //? 2. sama atau nggak pass dan confirmpass, jika beda jangan dilanjutkan kasih tau user untuk ubah
@@ -40,13 +61,39 @@ export const LoginActionThunk = (input) => {
   };
 };
 
-export const ResetAction = () => {
-  return {
-    type: "RESET",
-  };
-};
-export const ResetActionthunk = () => {
+export const RegActionThunk = (input) => {
   return (dispatch) => {
-    dispatch({ type: "RESET" });
+    var { username, password, confirmpass } = input;
+    let data = {
+      username,
+      password,
+      role: "users",
+    };
+    if (password === confirmpass) {
+      dispatch({ type: "LOADING" });
+      axios
+        .get(`${API_URL}/users?username=${username}`)
+        .then((res1) => {
+          if (res1.data.length) {
+            dispatch({ type: "ERROR", error: "username telah terdaftar" });
+          } else {
+            axios
+              .post(`${API_URL}/users`, data)
+              .then((res2) => {
+                console.log(res2.data);
+                localStorage.setItem("id", res2.data.id);
+                dispatch({ type: "LOGIN", payload: res2.data });
+              })
+              .catch((err) => {
+                dispatch({ type: "ERROR", error: "server error" });
+              });
+          }
+        })
+        .catch((err) => {
+          dispatch({ type: "ERROR", error: "server error" });
+        });
+    } else {
+      dispatch({ type: "ERROR", error: "confirm dan pass harus sama" });
+    }
   };
 };

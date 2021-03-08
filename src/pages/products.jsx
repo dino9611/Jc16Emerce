@@ -71,6 +71,23 @@ class Products extends Component {
               <BreadcrumbItem active>Product</BreadcrumbItem>
             </Breadcrumb>
           </div>
+          <div>
+            <form>
+              <input
+                type="text"
+                className="form-control my-2"
+                placeholder="name"
+              />
+              <select className="form-control my-2">
+                <option value="0">All</option>
+                <option value="1">Mobil</option>
+                <option value="2">Motor</option>
+              </select>
+              <Button type={"submit"} className="py-2 px-2">
+                Search
+              </Button>
+            </form>
+          </div>
           <div className="row">{this.renderProducts()}</div>
         </div>
       </div>

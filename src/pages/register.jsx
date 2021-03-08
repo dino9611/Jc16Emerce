@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import Header from "../components/header";
 import Button from "./../components/button";
-// import axios from "axios";
+import axios from "axios";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-// import { API_URL } from "./../helper";
+import { API_URL } from "./../helper";
 import {
   LoginAction,
   LoginActionThunk,
   ResetActionthunk,
+  ErrorAction,
+  LoadingAction,
+  RegActionThunk,
 } from "./../redux/actions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -41,49 +44,72 @@ const Style = {
         borderColor: "#fbab7e",
       },
     },
+    marginTop: "20px",
   },
 };
 
-class Login extends Component {
+class Register extends Component {
   state = {
     isVisible: false,
     username: "",
     password: "",
+    confirmpass: "",
+    isVisibleConf: false,
   };
 
   toggle = () => {
     this.setState({ isVisible: !this.state.isVisible });
   };
-
+  toggleconf = () => {
+    this.setState({ isVisibleConf: !this.state.isVisibleConf });
+  };
   onInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onLoginSubmit = (e) => {
+  onRegSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.username);
-    const { username, password } = this.state;
 
+    const { username, password, confirmpass } = this.state;
     // tanpa thunk
-    // axios
-    //   .get(`${API_URL}/users?username=${username}&password=${password}`)
-    //   .then((res) => {
-    //     if (res.data.length) {
-    //       localStorage.setItem("id", res.data[0].id);
-    //       this.props.LoginAction(res.data[0]);
-    //     } else {
-    //       alert("toastfy user tidak ditemukan");
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    // let data = {
+    //   username,
+    //   password,
+    //   role: "users",
+    // };
+    // if (password === confirmpass) {
+    //   this.props.LoadingAction();
+    //   axios
+    //     .get(`${API_URL}/users?username=${username}`)
+    //     .then((res1) => {
+    //       if (res1.data.length) {
+    //         this.props.ErrorAction("username telah terdaftar");
+    //       } else {
+    //         axios
+    //           .post(`${API_URL}/users`, data)
+    //           .then((res2) => {
+    //             localStorage.setItem("id", res2.data.id);
+    //             this.props.LoginAction(res2.data);
+    //           })
+    //           .catch((err) => {
+    //             this.props.ErrorAction("server error");
+    //           });
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       this.props.ErrorAction("server error");
+    //     });
+    // } else {
+    //   this.props.ErrorAction("confirm dan pass harus sama");
+    // }
     // * with thunk
-    var data = {
-      username: username,
+    let data = {
+      username,
       password,
+      confirmpass,
     };
-    this.props.LoginActionThunk(data);
+    this.props.RegActionThunk(data);
+    // this.props.LoginActionThunk(data);
   };
 
   render() {
@@ -101,12 +127,12 @@ class Login extends Component {
               className="rounded col-md-5 d-flex justify-content-center align-items-center shadow"
               //   style={{ border: "3px solid #fbab7e" }}
             >
-              <form onSubmit={this.onLoginSubmit} style={{ width: "50%" }}>
-                <h1 style={{ color: "#fbab7e" }}>Login</h1>
+              <form onSubmit={this.onRegSubmit} style={{ width: "50%" }}>
+                <h1 style={{ color: "#fbab7e" }}>Register</h1>
                 <input
                   type="text"
                   placeholder="username"
-                  className="form-control my-3 inp"
+                  className="form-control mt-3 inp"
                   name="username"
                   onChange={this.onInputChange}
                   value={this.state.username}
@@ -149,37 +175,49 @@ class Login extends Component {
                     labelWidth={70}
                   />
                 </FormControl>
-                {/* react strap */}
-                {/* <div className="d-flex">
-                  <input
-                    type={this.state.isVisible ? "text" : "password"}
-                    className=" form-control  mt-3"
-                    placeholder="password"
-                    name="password"
+                <FormControl variant="outlined" className={classes.root}>
+                  <InputLabel
+                    className="warna"
+                    htmlFor="outlined-adornment-password"
+                  >
+                    Confirm Password
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-password"
+                    type={this.state.isVisibleConf ? "text" : "password"}
+                    value={this.state.confirmpass}
                     onChange={this.onInputChange}
-                    value={this.state.password}
+                    name="confirmpass"
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={this.toggleconf}
+                          // onMouseDown={handleMouseDownPassword}
+                        >
+                          {this.state.isVisibleConf ? (
+                            <AiFillEye
+                              style={{ color: "#fbab7e" }}
+                              // onClick={this.toggle}
+                            />
+                          ) : (
+                            <AiFillEyeInvisible
+                              style={{ color: "#9f9f9f" }}
+                              // onClick={this.toggle}
+                            />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    labelWidth={130}
                   />
-                  <div style={{ paddingTop: 20, paddingLeft: 5 }}>
-                    {this.state.isVisible ? (
-                      <AiFillEye
-                        style={{ fontSize: "1.5em", color: "#fbab7e" }}
-                        onClick={this.toggle}
-                      />
-                    ) : (
-                      <AiFillEyeInvisible
-                        style={{ fontSize: "1.5em", color: "#9f9f9f" }}
-                        onClick={this.toggle}
-                      />
-                    )}
-                  </div>
-                </div> */}
-
+                </FormControl>
                 <div className="mt-3 ">
                   {this.props.dataUser.loading ? (
                     <Loader type="Rings" color="#fbab7e" />
                   ) : (
                     <Button submit={true} className="px-4 py-2 w-50 ">
-                      Login
+                      Register
                     </Button>
                   )}
                 </div>
@@ -214,5 +252,8 @@ export default withStyles(Style)(
     LoginAction,
     LoginActionThunk,
     ResetActionthunk,
-  })(Login)
+    ErrorAction,
+    LoadingAction,
+    RegActionThunk,
+  })(Register)
 );

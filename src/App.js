@@ -12,6 +12,8 @@ import { connect } from "react-redux";
 import Loading from "./components/loading";
 import Products from "./pages/products";
 import ProductDetail from "./pages/productdetail";
+import Register from "./pages/register";
+
 // import Header from "./components/header";
 
 // *feature :
@@ -62,6 +64,7 @@ class App extends Component {
             <Route path="/products" exact component={Products} />
             <Route path="/product/:idprod" component={ProductDetail} />
             <Route path="/login" exact component={Login} />
+            <Route path="/register" exact component={Register} />
             <Route path="*" component={NotFound} />
           </Switch>
         </div>
@@ -74,6 +77,7 @@ class App extends Component {
           <Route path="/products" exact component={Products} />
           <Route path="/product/:idprod" component={ProductDetail} />
           <Route path="/login" exact component={Login} />
+          <Route path="/register" exact component={Register} />
           <Route path="*" component={NotFound} />
         </Switch>
       </div>
