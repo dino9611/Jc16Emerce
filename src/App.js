@@ -10,6 +10,8 @@ import { API_URL } from "./helper";
 import { LoginAction } from "./redux/actions";
 import { connect } from "react-redux";
 import Loading from "./components/loading";
+import Products from "./pages/products";
+import ProductDetail from "./pages/productdetail";
 // import Header from "./components/header";
 
 // *feature :
@@ -51,11 +53,26 @@ class App extends Component {
     if (this.state.isLoading) {
       return <Loading />;
     }
+    if (this.props.dataUser.role === "admin") {
+      return (
+        <div>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/manageProd" exact component={ManageProduct} />
+            <Route path="/products" exact component={Products} />
+            <Route path="/product/:idprod" component={ProductDetail} />
+            <Route path="/login" exact component={Login} />
+            <Route path="*" component={NotFound} />
+          </Switch>
+        </div>
+      );
+    }
     return (
       <div>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/manageProd" exact component={ManageProduct} />
+          <Route path="/products" exact component={Products} />
+          <Route path="/product/:idprod" component={ProductDetail} />
           <Route path="/login" exact component={Login} />
           <Route path="*" component={NotFound} />
         </Switch>

@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   islogin: false,
   loading: false,
   error: "",
+  cart: [],
 };
 
 const AuthReducers = (state = INITIAL_STATE, action) => {

@@ -40,21 +40,27 @@ class Header extends Component {
             <Nav className="ml-auto" navbar>
               {this.props.dataUser.islogin ? (
                 <>
-                  <NavItem className="py-2 mx-2">History</NavItem>
-                  <NavItem className="py-2 mx-2">
-                    <FaCartArrowDown style={{ fontSize: "25px" }} />
-                    <Badge
-                      style={{
-                        position: "relative",
-                        bottom: 10,
-                        right: 5,
-                        backgroundColor: "#fbab7e",
-                      }}
-                      className="px-1 rounded-circle text-center"
-                    >
-                      3
-                    </Badge>
-                  </NavItem>
+                  {this.props.dataUser.role === "admin" ? null : (
+                    <>
+                      <NavItem className="py-2 mx-2">History</NavItem>
+                      <NavItem className="py-2 mx-2">
+                        <FaCartArrowDown style={{ fontSize: "25px" }} />
+                        {this.props.dataUser.cart.length ? (
+                          <Badge
+                            style={{
+                              position: "relative",
+                              bottom: 10,
+                              right: 5,
+                              backgroundColor: "#fbab7e",
+                            }}
+                            className="px-1 rounded-circle text-center"
+                          >
+                            3
+                          </Badge>
+                        ) : null}
+                      </NavItem>
+                    </>
+                  )}
                   <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav>
                       {this.props.dataUser.username}

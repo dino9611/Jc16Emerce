@@ -31,6 +31,29 @@
   color: #fbab7e !important;
 }
 
+.slick-prev:before,
+.slick-next:before {
+  color: #fbab7e !important;
+  font-size: 80px !important;
+}
+.slick-prev {
+  left: -90px !important;
+  z-index: 1;
+}
+.slick-dots li button:before {
+  font-size: 20px !important;
+  color: #fbab7e !important;
+}
+.slick-dots li.slick-active button:before {
+  opacity: 0.75;
+  color: black;
+}
+.garis {
+  border-top: 2px solid #fbab7e;
+}
+.garisbwh {
+  border-bottom: 2px solid #fbab7e;
+}
 /* @import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap");
 .slick-prev:before,
 .slick-next:before {
