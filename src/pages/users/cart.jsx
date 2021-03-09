@@ -7,33 +7,33 @@ import axios from "axios";
 import { CartAction } from "../../redux/actions";
 class Cart extends Component {
   state = {
-    banks: [],
-    pilihanId: 0,
     modal: false,
-    bukti: "",
+    stokadmin: [],
+    loading: true,
   };
 
   componentDidMount() {
-    // axios
-    //   .get(`${API_URL}/banks`)
-    //   .then((res) => {
-    //     this.setState({ banks: res.data });
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
     var arr = [];
     var cart = this.props.dataUser.cart;
     cart.forEach((val) => {
       arr.push(axios.get(`${API_URL}/products/${val.id}`));
     });
-
+    console.log(cart, "32");
     Promise.all(arr)
       .then((res) => {
         console.log(res);
+        var newarr = [];
+        res.forEach((val) => {
+          newarr.push({ id: val.data.id, stokadmin: val.data.stok });
+        });
+        console.log(newarr);
+        this.setState({ stokadmin: newarr });
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        this.setState({ loading: false });
       });
   }
 
@@ -100,7 +100,7 @@ class Cart extends Component {
             <button
               className="btn btn-danger mx-2"
               onClick={() => this.onMinusClick(index)}
-              disabled={val.qty === 1 ? true : false}
+              disabled={val.qty <= 1 ? true : false}
             >
               -
             </button>
@@ -108,7 +108,9 @@ class Cart extends Component {
             <button
               className="btn btn-success mx-2"
               //   disabled={v}
-              //   disabled={val.qty === 5 ? true : false}
+              disabled={
+                val.qty >= this.state.stokadmin[index].stokadmin ? true : false
+              }
               onClick={() => this.onPlusClick(index)}
             >
               +
@@ -141,8 +143,23 @@ class Cart extends Component {
         axios
           .patch(`${API_URL}/users/${iduser}`, { cart: [] })
           .then((res1) => {
-            this.props.CartAction(res1.data.cart);
-            this.setState({ modal: false });
+            var stokadmin = this.state.stokadmin;
+            var cart = this.props.dataUser.cart;
+            var stokfetch = stokadmin.map((val, index) => {
+              // stockfetch type datanya adalah array
+              let stokakhir = val.stokadmin - cart[index].qty;
+              return axios.patch(`${API_URL}/products/${val.id}`, {
+                stok: stokakhir,
+              });
+            });
+            Promise.all(stokfetch)
+              .then(() => {
+                this.props.CartAction(res1.data.cart);
+                this.setState({ modal: false });
+              })
+              .catch((err) => {
+                console.log(err);
+              });
           })
           .catch((err) => {
             console.log(err);
@@ -188,30 +205,11 @@ class Cart extends Component {
   };
 
   render() {
+    if (this.state.loading) {
+      return <h1>Loading</h1>;
+    }
     return (
       <div>
-        {/* <Modal centered isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Checkout</ModalHeader>
-          <ModalBody>
-            <div className="mb-2">
-              Total {currencyFormatter(this.rendertotal())}
-            </div>
-            <input
-              type="text"
-              className="form-control my-2"
-              placeholder="input bukti"
-              name="bukti"
-              value={this.state.bukti}
-              onChange={this.onInputChange}
-            />
-            <div className="my-2">{this.renderRadio()}</div>
-          </ModalBody>
-          <ModalFooter>
-            <button className="btn btn-success" onClick={this.onCheckoutClick}>
-              checkout
-            </button>
-          </ModalFooter>
-        </Modal> */}
         <Modal centered isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Checkout</ModalHeader>
           <ModalBody>Are You Sure Wanna Checkout ?</ModalBody>

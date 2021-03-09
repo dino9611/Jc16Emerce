@@ -14,6 +14,7 @@ import Products from "./pages/products";
 import ProductDetail from "./pages/productdetail";
 import Register from "./pages/register";
 import Cart from "./pages/users/cart";
+import History from "./pages/users/history";
 
 // import Header from "./components/header";
 
@@ -78,6 +79,7 @@ class App extends Component {
           <Route path="/products" exact component={Products} />
           <Route path="/product/:idprod" component={ProductDetail} />
           <Route path="/cart" exact component={Cart} />
+          <Route path="/history" exact component={History} />
           <Route path="/login" exact component={Login} />
           <Route path="/register" exact component={Register} />
           <Route path="*" component={NotFound} />

@@ -14,34 +14,34 @@
       "role": "users",
       "cart": [
         {
-          "name": "Motor Classic aja",
-          "image": "https://cdn0-production-images-kly.akamaized.net/C5J8irE5lsJjSLe6mmjPStPMbU8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2161103/original/026204800_1525529755-2.jpg",
-          "tahun": "2016",
-          "harga": "22.4",
-          "deskripsi": "MOtor \nbebas Banjir \nmulus broo!!!",
-          "categoryId": "2",
-          "id": 3,
-          "stok": 5,
-          "category": {
-            "id": 2,
-            "nama": "motor"
-          },
-          "qty": 6
-        },
-        {
-          "name": "Terios",
-          "image": "https://imgcdnblog.carbay.com/wp-content/uploads/2020/09/23203511/Daihatsu-Terios-X-MT-500x333.jpg",
-          "tahun": "2020",
-          "harga": "200",
-          "deskripsi": "Mobil Terios mantap",
-          "categoryId": "1",
-          "id": 4,
+          "id": 1,
+          "name": "Avanza bla",
+          "image": "https://i0.wp.com/www.sewamobilbali1st.com/wp-content/uploads/2015/06/Sewa-Mobil-Toyota-Avanza-di-Bali-Dengan-Sopir-New-2015.jpg?resize=705%2C397&ssl=1",
+          "tahun": 2017,
+          "harga": 80,
+          "deskripsi": "mobil ggwp",
+          "categoryId": 1,
           "stok": 5,
           "category": {
             "id": 1,
             "nama": "mobil"
           },
-          "qty": 2
+          "qty": 1
+        },
+        {
+          "name": "mio Yamaha",
+          "image": "https://imgx.gridoto.com/crop/5x0:689x452/700x465/photo/2019/10/04/2998515980.png",
+          "tahun": "2012",
+          "harga": "6",
+          "deskripsi": "Mio Untuk orang kece",
+          "categoryId": "2",
+          "id": 7,
+          "stok": 5,
+          "category": {
+            "id": 2,
+            "nama": "motor"
+          },
+          "qty": 1
         }
       ]
     },
@@ -93,7 +93,7 @@
       "harga": 20,
       "deskripsi": "vespa tiktok",
       "categoryId": 2,
-      "stok": 5
+      "stok": 4
     },
     {
       "name": "Motor Classic aja",
@@ -103,7 +103,7 @@
       "deskripsi": "MOtor \nbebas Banjir \nmulus broo!!!",
       "categoryId": "2",
       "id": 3,
-      "stok": 6
+      "stok": 2
     },
     {
       "name": "Terios",
@@ -113,7 +113,7 @@
       "deskripsi": "Mobil Terios mantap",
       "categoryId": "1",
       "id": 4,
-      "stok": 5
+      "stok": 3
     },
     {
       "name": "xenia",
@@ -176,7 +176,88 @@
       "stok": 5
     }
   ],
-  "transactions": [],
+  "transactions": [
+    {
+      "userId": 2,
+      "tanggal": "2021-03-09T07:16:42.956Z",
+      "status": "belum bayar",
+      "products": [
+        {
+          "name": "Motor Classic aja",
+          "image": "https://cdn0-production-images-kly.akamaized.net/C5J8irE5lsJjSLe6mmjPStPMbU8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2161103/original/026204800_1525529755-2.jpg",
+          "tahun": "2016",
+          "harga": "22.4",
+          "deskripsi": "MOtor \nbebas Banjir \nmulus broo!!!",
+          "categoryId": "2",
+          "id": 3,
+          "stok": 5,
+          "category": {
+            "id": 2,
+            "nama": "motor"
+          },
+          "qty": 3
+        },
+        {
+          "name": "Terios",
+          "image": "https://imgcdnblog.carbay.com/wp-content/uploads/2020/09/23203511/Daihatsu-Terios-X-MT-500x333.jpg",
+          "tahun": "2020",
+          "harga": "200",
+          "deskripsi": "Mobil Terios mantap",
+          "categoryId": "1",
+          "id": 4,
+          "stok": 5,
+          "category": {
+            "id": 1,
+            "nama": "mobil"
+          },
+          "qty": 2
+        }
+      ],
+      "bankId": 0,
+      "bukti": "",
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "tanggal": "2021-03-09T08:01:15.062Z",
+      "status": "belum bayar",
+      "products": [
+        {
+          "name": "Motor Classic aja",
+          "image": "https://cdn0-production-images-kly.akamaized.net/C5J8irE5lsJjSLe6mmjPStPMbU8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2161103/original/026204800_1525529755-2.jpg",
+          "tahun": "2016",
+          "harga": "22.4",
+          "deskripsi": "MOtor \nbebas Banjir \nmulus broo!!!",
+          "categoryId": "2",
+          "id": 3,
+          "stok": 3,
+          "category": {
+            "id": 2,
+            "nama": "motor"
+          },
+          "qty": 1
+        },
+        {
+          "id": 2,
+          "name": "Vespa matic",
+          "image": "https://www.blibli.com/friends/assets/2020/10/vespa-5537949_1920-1024x666.jpg",
+          "tahun": 2018,
+          "harga": 20,
+          "deskripsi": "vespa tiktok",
+          "categoryId": 2,
+          "stok": 5,
+          "category": {
+            "id": 2,
+            "nama": "motor"
+          },
+          "qty": 1
+        }
+      ],
+      "bankId": 0,
+      "bukti": "",
+      "id": 2
+    }
+  ],
   "transactionsdetails": [],
   "banks": [
     {
