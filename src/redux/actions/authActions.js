@@ -2,6 +2,13 @@ import axios from "axios";
 import { API_URL } from "../../helper";
 
 //* without thunk
+export const CartAction = (input) => {
+  return {
+    type: "UPDATECART",
+    cart: input,
+  };
+};
+
 export const LoginAction = (input) => {
   return {
     type: "LOGIN",

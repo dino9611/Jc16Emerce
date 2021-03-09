@@ -7,6 +7,8 @@ import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import Button from "../components/button";
 import { connect } from "react-redux";
+import { CartAction } from "../redux/actions/authActions";
+
 class ProductDetail extends Component {
   state = {
     product: {},
@@ -36,7 +38,12 @@ class ProductDetail extends Component {
 
   onQtyClick = (operator) => {
     if (operator === "tambah") {
-      this.setState({ qty: this.state.qty + 1 });
+      var hasil = this.state.qty + 1;
+      if (hasil > this.state.product.stok) {
+        alert("melebihi stock");
+      } else {
+        this.setState({ qty: this.state.qty + 1 });
+      }
     } else {
       var hasil = this.state.qty - 1;
       if (hasil < 1) {
@@ -54,7 +61,60 @@ class ProductDetail extends Component {
     ) {
       alert(" tidak boleh beli");
     } else {
-      alert("boleh beli");
+      let id = this.props.dataUser.id;
+      let idprod = this.state.product.id;
+      let stok = this.state.product.stok;
+      axios
+        .get(`${API_URL}/users/${id}`)
+        .then((res) => {
+          var cart = res.data.cart; //cart adalah array
+
+          let findIdx = cart.findIndex((val) => val.id == idprod);
+          if (findIdx < 0) {
+            let data = {
+              ...this.state.product,
+              qty: this.state.qty,
+            };
+            // rekayasa array
+            cart.push(data);
+            // update data
+            axios
+              .patch(`${API_URL}/users/${id}`, { cart: cart }) // expektasi data yang dikrim harus object
+              .then((res1) => {
+                console.log(res1.data);
+                this.props.CartAction(res1.data.cart);
+                alert("cart berhasil");
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          } else {
+            let qtyakhir = cart[findIdx].qty + this.state.qty; //4 //2
+            if (qtyakhir > stok) {
+              // rekayasa array
+              var qtyablebuy = stok - cart[findIdx].qty;
+              alert(
+                "barang dicart melebihi stok barang yang bisa dibeli hanya " +
+                  qtyablebuy
+              );
+            } else {
+              cart[findIdx].qty = qtyakhir; //?cart adalah array karena di db.json itu array
+              axios
+                .patch(`${API_URL}/users/${id}`, { cart: cart }) // ?ekspektasi data yang dikrim harus object
+                .then((res1) => {
+                  console.log(res1.data);
+                  this.props.CartAction(res1.data.cart);
+                  alert("cart berhasil");
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            }
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
@@ -140,4 +200,4 @@ const MaptstatetoProps = (state) => {
     dataUser: state.Auth,
   };
 };
-export default connect(MaptstatetoProps)(ProductDetail);
+export default connect(MaptstatetoProps, { CartAction })(ProductDetail);

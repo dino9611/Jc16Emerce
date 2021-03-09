@@ -27,6 +27,8 @@ const AuthReducers = (state = INITIAL_STATE, action) => {
       return { ...state, error: "", loading: false };
     case "LOGOUT":
       return INITIAL_STATE;
+    case "UPDATECART":
+      return { ...state, cart: action.cart };
     default:
       return state;
   }

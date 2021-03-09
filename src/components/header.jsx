@@ -44,7 +44,11 @@ class Header extends Component {
                     <>
                       <NavItem className="py-2 mx-2">History</NavItem>
                       <NavItem className="py-2 mx-2">
-                        <FaCartArrowDown style={{ fontSize: "25px" }} />
+                        <Link to="/cart">
+                          <FaCartArrowDown
+                            style={{ fontSize: "25px", color: "black" }}
+                          />
+                        </Link>
                         {this.props.dataUser.cart.length ? (
                           <Badge
                             style={{
@@ -55,7 +59,7 @@ class Header extends Component {
                             }}
                             className="px-1 rounded-circle text-center"
                           >
-                            3
+                            {this.props.dataUser.cart.length}
                           </Badge>
                         ) : null}
                       </NavItem>

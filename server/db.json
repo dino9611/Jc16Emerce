@@ -4,37 +4,74 @@
       "id": 1,
       "username": "admin",
       "password": "1234",
-      "role": "admin"
+      "role": "admin",
+      "cart": []
     },
     {
       "id": 2,
       "username": "dino",
       "password": "1234",
-      "role": "users"
+      "role": "users",
+      "cart": [
+        {
+          "name": "Motor Classic aja",
+          "image": "https://cdn0-production-images-kly.akamaized.net/C5J8irE5lsJjSLe6mmjPStPMbU8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2161103/original/026204800_1525529755-2.jpg",
+          "tahun": "2016",
+          "harga": "22.4",
+          "deskripsi": "MOtor \nbebas Banjir \nmulus broo!!!",
+          "categoryId": "2",
+          "id": 3,
+          "stok": 5,
+          "category": {
+            "id": 2,
+            "nama": "motor"
+          },
+          "qty": 6
+        },
+        {
+          "name": "Terios",
+          "image": "https://imgcdnblog.carbay.com/wp-content/uploads/2020/09/23203511/Daihatsu-Terios-X-MT-500x333.jpg",
+          "tahun": "2020",
+          "harga": "200",
+          "deskripsi": "Mobil Terios mantap",
+          "categoryId": "1",
+          "id": 4,
+          "stok": 5,
+          "category": {
+            "id": 1,
+            "nama": "mobil"
+          },
+          "qty": 2
+        }
+      ]
     },
     {
       "username": "willy",
       "password": "1234",
       "role": "users",
-      "id": 3
+      "id": 3,
+      "cart": []
     },
     {
       "username": "zul",
       "password": "1234",
       "role": "users",
-      "id": 4
+      "id": 4,
+      "cart": []
     },
     {
       "username": "riko",
       "password": "1234",
       "role": "users",
-      "id": 5
+      "id": 5,
+      "cart": []
     },
     {
       "username": "caiyo",
       "password": "1234",
       "role": "users",
-      "id": 6
+      "id": 6,
+      "cart": []
     }
   ],
   "products": [
@@ -45,7 +82,8 @@
       "tahun": 2017,
       "harga": 80,
       "deskripsi": "mobil ggwp",
-      "categoryId": 1
+      "categoryId": 1,
+      "stok": 5
     },
     {
       "id": 2,
@@ -54,7 +92,8 @@
       "tahun": 2018,
       "harga": 20,
       "deskripsi": "vespa tiktok",
-      "categoryId": 2
+      "categoryId": 2,
+      "stok": 5
     },
     {
       "name": "Motor Classic aja",
@@ -63,7 +102,8 @@
       "harga": "22.4",
       "deskripsi": "MOtor \nbebas Banjir \nmulus broo!!!",
       "categoryId": "2",
-      "id": 3
+      "id": 3,
+      "stok": 6
     },
     {
       "name": "Terios",
@@ -72,7 +112,8 @@
       "harga": "200",
       "deskripsi": "Mobil Terios mantap",
       "categoryId": "1",
-      "id": 4
+      "id": 4,
+      "stok": 5
     },
     {
       "name": "xenia",
@@ -81,7 +122,8 @@
       "harga": "100",
       "deskripsi": "mobil mantap",
       "categoryId": "1",
-      "id": 5
+      "id": 5,
+      "stok": 5
     },
     {
       "name": "supra x125",
@@ -90,7 +132,8 @@
       "harga": "8",
       "deskripsi": "Motor Honda Warna merah",
       "categoryId": "2",
-      "id": 6
+      "id": 6,
+      "stok": 5
     },
     {
       "name": "mio Yamaha",
@@ -99,7 +142,8 @@
       "harga": "6",
       "deskripsi": "Mio Untuk orang kece",
       "categoryId": "2",
-      "id": 7
+      "id": 7,
+      "stok": 5
     },
     {
       "name": "Mio 125",
@@ -108,7 +152,8 @@
       "harga": "20",
       "deskripsi": "motor mio keren",
       "categoryId": "2",
-      "id": 8
+      "id": 8,
+      "stok": 5
     },
     {
       "name": "xtrail",
@@ -117,7 +162,8 @@
       "harga": "109.4",
       "deskripsi": "mobil kece",
       "categoryId": "1",
-      "id": 9
+      "id": 9,
+      "stok": 5
     },
     {
       "name": "Brio",
@@ -126,20 +172,22 @@
       "harga": "120",
       "deskripsi": "brio mobil semua orang",
       "categoryId": "1",
-      "id": 10
+      "id": 10,
+      "stok": 5
     }
   ],
-  "carts": [],
   "transactions": [],
   "transactionsdetails": [],
   "banks": [
     {
       "id": 1,
-      "nama": "Bca"
+      "nama": "Bca",
+      "norek": "21134503921"
     },
     {
       "id": 2,
-      "nama": "Mandiri"
+      "nama": "Mandiri",
+      "norek": "002134503921"
     }
   ],
   "categories": [

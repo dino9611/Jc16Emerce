@@ -21,7 +21,6 @@ import withReactContent from "sweetalert2-react-content";
 import { connect } from "react-redux";
 import NotFound from "../notfound";
 const Myswal = withReactContent(Swal);
-
 class ManageProduct extends Component {
   state = {
     products: [],

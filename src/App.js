@@ -13,6 +13,7 @@ import Loading from "./components/loading";
 import Products from "./pages/products";
 import ProductDetail from "./pages/productdetail";
 import Register from "./pages/register";
+import Cart from "./pages/users/cart";
 
 // import Header from "./components/header";
 
@@ -76,6 +77,7 @@ class App extends Component {
           <Route path="/" exact component={Home} />
           <Route path="/products" exact component={Products} />
           <Route path="/product/:idprod" component={ProductDetail} />
+          <Route path="/cart" exact component={Cart} />
           <Route path="/login" exact component={Login} />
           <Route path="/register" exact component={Register} />
           <Route path="*" component={NotFound} />
@@ -83,39 +85,6 @@ class App extends Component {
       </div>
     );
   }
-
-  // render() {
-  //   if (this.state.isLoading) {
-  //     return <Loading />;
-  //   }
-
-  //     if (this.props.dataUser.role == "admin") {
-  //       return (
-  //         <div>
-  //           <Switch>
-  //             <Route path="/" exact component={Home} />
-
-  //             <Route path="/manageProd" exact component={ManageProduct} />
-
-  //             <Route path="/login" exact component={Login} />
-
-  //             <Route path="*" component={NotFound} />
-  //           </Switch>
-  //         </div>
-  //       );
-  //     }
-  //     return (
-  //       <div>
-  //         <Switch>
-  //           <Route path="/" exact component={Home} />
-
-  //           <Route path="/login" exact component={Login} />
-
-  //           <Route path="*" component={NotFound} />
-  //         </Switch>
-  //       </div>
-  //     );
-  //   }
 }
 const MaptstatetoProps = (state) => {
   return {
