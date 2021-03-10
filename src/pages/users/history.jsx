@@ -14,6 +14,7 @@ class History extends Component {
     bukti: "",
     history: [],
     indexdetail: -1,
+    products: [],
   };
   async componentDidMount() {
     try {
@@ -21,8 +22,12 @@ class History extends Component {
       var res1 = await axios.get(
         `${API_URL}/transactions?userId=${this.props.dataUser.id}`
       );
-
-      this.setState({ banks: res.data, history: res1.data });
+      var products = await axios.get(`${API_URL}/products`);
+      this.setState({
+        banks: res.data,
+        history: res1.data,
+        products: products.data,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -102,7 +107,32 @@ class History extends Component {
     this.setState({ indexdetail: index, modalDetail: true });
   };
 
-  onBatalClick = (index) => {};
+  //   onBatalClick = async (index) => {
+  //     var productsAdmin = this.state.products;
+  //     var producthistory = this.state.history[index].products;
+  //     console.log(productsAdmin);
+  //     console.log(producthistory);
+  //     for (let i = 0; i < producthistory.length; i++) {
+  //       for (let j = 0; j < productsAdmin.length; j++) {
+  //         if (producthistory[i].id == productsAdmin[j].id) {
+  //           let stocknew = producthistory[i].qty + productsAdmin[j].stok;
+  //           await axios.patch(`${API_URL}/products/${productsAdmin[j].id}`, {
+  //             stok: stocknew,
+  //           });
+  //         }
+  //       }
+  //     }
+  //     await axios.patch(
+  //       `${API_URL}/transactions/${this.state.history[index].id}`,
+  //       {
+  //         status: "batal",
+  //       }
+  //     );
+  //     var res1 = await axios.get(
+  //       `${API_URL}/transactions?userId=${this.props.dataUser.id}`
+  //     );
+  //     this.setState({ history: res1.data });
+  //   };
 
   renderHistory = () => {
     return this.state.history.map((val, index) => {
@@ -115,6 +145,7 @@ class History extends Component {
             <button
               className="btn btn-danger"
               onClick={() => this.onBatalClick(index)}
+              disabled={val.status === "batal"}
             >
               Batal
             </button>
@@ -123,6 +154,7 @@ class History extends Component {
             <button
               className="btn btn-primary"
               onClick={() => this.onDetailClick(index)}
+              disabled={val.status === "batal"}
             >
               Bayar
             </button>

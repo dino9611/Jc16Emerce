@@ -103,7 +103,7 @@
       "deskripsi": "MOtor \nbebas Banjir \nmulus broo!!!",
       "categoryId": "2",
       "id": 3,
-      "stok": 2
+      "stok": 6
     },
     {
       "name": "Terios",
@@ -113,7 +113,7 @@
       "deskripsi": "Mobil Terios mantap",
       "categoryId": "1",
       "id": 4,
-      "stok": 3
+      "stok": 6
     },
     {
       "name": "xenia",
@@ -180,7 +180,7 @@
     {
       "userId": 2,
       "tanggal": "2021-03-09T07:16:42.956Z",
-      "status": "belum bayar",
+      "status": "batal",
       "products": [
         {
           "name": "Motor Classic aja",
