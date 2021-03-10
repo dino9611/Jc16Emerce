@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Header from "../../components/header";
-import { API_URL, currencyFormatter } from "../../helper";
+import { API_URL, currencyFormatter, formatDate } from "../../helper";
 import { Table, Modal, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
 import { connect } from "react-redux";
-
+import { toast } from "react-toastify";
 class History extends Component {
   state = {
     banks: [],
@@ -22,11 +22,12 @@ class History extends Component {
       var res1 = await axios.get(
         `${API_URL}/transactions?userId=${this.props.dataUser.id}`
       );
-      var products = await axios.get(`${API_URL}/products`);
+      // get data semua products
+      var res2 = await axios.get(`${API_URL}/products`);
       this.setState({
         banks: res.data,
         history: res1.data,
-        products: products.data,
+        products: res2.data,
       });
     } catch (error) {
       console.log(error);
@@ -42,15 +43,6 @@ class History extends Component {
     //   });
   }
 
-  rendertotal = () => {
-    // let total = 0;
-    // if (this.state.history.length) {
-    //   this.state.history.products.forEach((val) => {
-    //     total += val.harga * val.qty;
-    //   });
-    // }
-    // return total;
-  };
   rendertotalDetail = () => {
     let total = 0;
 
@@ -107,39 +99,55 @@ class History extends Component {
     this.setState({ indexdetail: index, modalDetail: true });
   };
 
-  //   onBatalClick = async (index) => {
-  //     var productsAdmin = this.state.products;
-  //     var producthistory = this.state.history[index].products;
-  //     console.log(productsAdmin);
-  //     console.log(producthistory);
-  //     for (let i = 0; i < producthistory.length; i++) {
-  //       for (let j = 0; j < productsAdmin.length; j++) {
-  //         if (producthistory[i].id == productsAdmin[j].id) {
-  //           let stocknew = producthistory[i].qty + productsAdmin[j].stok;
-  //           await axios.patch(`${API_URL}/products/${productsAdmin[j].id}`, {
-  //             stok: stocknew,
-  //           });
-  //         }
-  //       }
-  //     }
-  //     await axios.patch(
-  //       `${API_URL}/transactions/${this.state.history[index].id}`,
-  //       {
-  //         status: "batal",
-  //       }
-  //     );
-  //     var res1 = await axios.get(
-  //       `${API_URL}/transactions?userId=${this.props.dataUser.id}`
-  //     );
-  //     this.setState({ history: res1.data });
-  //   };
+  onBatalClick = async (index) => {
+    let productsAdmin = this.state.products;
+    console.log(productsAdmin);
+    let producthistory = this.state.history[index].products;
+    try {
+      // edit stok productadmin
+      for (let i = 0; i < producthistory.length; i++) {
+        for (let j = 0; j < productsAdmin.length; j++) {
+          if (producthistory[i].id === productsAdmin[j].id) {
+            let stocknew = producthistory[i].qty + productsAdmin[j].stok;
+            await axios.patch(`${API_URL}/products/${productsAdmin[j].id}`, {
+              stok: stocknew,
+            });
+          }
+        }
+      }
+      // edit transaksi
+      await axios.patch(
+        `${API_URL}/transactions/${this.state.history[index].id}`,
+        {
+          status: "batal",
+        }
+      );
+      // refresh data
+      var res1 = await axios.get(
+        `${API_URL}/transactions?userId=${this.props.dataUser.id}`
+      );
+      this.setState({ history: res1.data });
+      toast("berhasil batalin", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("error server");
+    }
+  };
 
   renderHistory = () => {
     return this.state.history.map((val, index) => {
       return (
         <tr key={index}>
           <td>{index + 1}</td>
-          <td>{val.tanggal}</td>
+          <td>{formatDate(val.tanggal)}</td>
           <td>{val.status}</td>
           <td>
             <button
@@ -154,9 +162,9 @@ class History extends Component {
             <button
               className="btn btn-primary"
               onClick={() => this.onDetailClick(index)}
-              disabled={val.status === "batal"}
+              // disabled={val.status === "batal"}
             >
-              Bayar
+              Detail
             </button>
           </td>
         </tr>

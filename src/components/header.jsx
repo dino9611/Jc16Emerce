@@ -42,7 +42,9 @@ class Header extends Component {
                 <>
                   {this.props.dataUser.role === "admin" ? null : (
                     <>
-                      <NavItem className="py-2 mx-2">History</NavItem>
+                      <Link to="/history">
+                        <NavItem className="py-2 mx-2">History</NavItem>
+                      </Link>
                       <NavItem className="py-2 mx-2">
                         <Link to="/cart">
                           <FaCartArrowDown

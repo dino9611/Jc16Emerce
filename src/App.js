@@ -15,7 +15,11 @@ import ProductDetail from "./pages/productdetail";
 import Register from "./pages/register";
 import Cart from "./pages/users/cart";
 import History from "./pages/users/history";
+import { ToastContainer } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.min.css";
+
+// minified version is also included
 // import Header from "./components/header";
 
 // *feature :
@@ -69,6 +73,7 @@ class App extends Component {
             <Route path="/register" exact component={Register} />
             <Route path="*" component={NotFound} />
           </Switch>
+          <ToastContainer />
         </div>
       );
     }
@@ -84,6 +89,7 @@ class App extends Component {
           <Route path="/register" exact component={Register} />
           <Route path="*" component={NotFound} />
         </Switch>
+        <ToastContainer />
       </div>
     );
   }

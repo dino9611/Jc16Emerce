@@ -12,38 +12,7 @@
       "username": "dino",
       "password": "1234",
       "role": "users",
-      "cart": [
-        {
-          "id": 1,
-          "name": "Avanza bla",
-          "image": "https://i0.wp.com/www.sewamobilbali1st.com/wp-content/uploads/2015/06/Sewa-Mobil-Toyota-Avanza-di-Bali-Dengan-Sopir-New-2015.jpg?resize=705%2C397&ssl=1",
-          "tahun": 2017,
-          "harga": 80,
-          "deskripsi": "mobil ggwp",
-          "categoryId": 1,
-          "stok": 5,
-          "category": {
-            "id": 1,
-            "nama": "mobil"
-          },
-          "qty": 1
-        },
-        {
-          "name": "mio Yamaha",
-          "image": "https://imgx.gridoto.com/crop/5x0:689x452/700x465/photo/2019/10/04/2998515980.png",
-          "tahun": "2012",
-          "harga": "6",
-          "deskripsi": "Mio Untuk orang kece",
-          "categoryId": "2",
-          "id": 7,
-          "stok": 5,
-          "category": {
-            "id": 2,
-            "nama": "motor"
-          },
-          "qty": 1
-        }
-      ]
+      "cart": []
     },
     {
       "username": "willy",
@@ -93,7 +62,7 @@
       "harga": 20,
       "deskripsi": "vespa tiktok",
       "categoryId": 2,
-      "stok": 4
+      "stok": 5
     },
     {
       "name": "Motor Classic aja",
@@ -103,7 +72,7 @@
       "deskripsi": "MOtor \nbebas Banjir \nmulus broo!!!",
       "categoryId": "2",
       "id": 3,
-      "stok": 6
+      "stok": 7
     },
     {
       "name": "Terios",
@@ -123,7 +92,7 @@
       "deskripsi": "mobil mantap",
       "categoryId": "1",
       "id": 5,
-      "stok": 5
+      "stok": 4
     },
     {
       "name": "supra x125",
@@ -133,7 +102,7 @@
       "deskripsi": "Motor Honda Warna merah",
       "categoryId": "2",
       "id": 6,
-      "stok": 5
+      "stok": 4
     },
     {
       "name": "mio Yamaha",
@@ -173,7 +142,7 @@
       "deskripsi": "brio mobil semua orang",
       "categoryId": "1",
       "id": 10,
-      "stok": 5
+      "stok": 4
     }
   ],
   "transactions": [
@@ -220,7 +189,7 @@
     {
       "userId": 2,
       "tanggal": "2021-03-09T08:01:15.062Z",
-      "status": "belum bayar",
+      "status": "batal",
       "products": [
         {
           "name": "Motor Classic aja",
@@ -256,6 +225,136 @@
       "bankId": 0,
       "bukti": "",
       "id": 2
+    },
+    {
+      "userId": 2,
+      "tanggal": "2021-03-10T03:24:28.296Z",
+      "status": "batal",
+      "products": [
+        {
+          "name": "Motor Classic aja",
+          "image": "https://cdn0-production-images-kly.akamaized.net/C5J8irE5lsJjSLe6mmjPStPMbU8=/640x360/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/2161103/original/026204800_1525529755-2.jpg",
+          "tahun": "2016",
+          "harga": "22.4",
+          "deskripsi": "MOtor \nbebas Banjir \nmulus broo!!!",
+          "categoryId": "2",
+          "id": 3,
+          "stok": 7,
+          "category": {
+            "id": 2,
+            "nama": "motor"
+          },
+          "qty": 1
+        },
+        {
+          "name": "Mio 125",
+          "image": "https://ecs7.tokopedia.net/img/cache/700/product-1/2020/5/16/101164598/101164598_faa874bd-5a34-4f65-8afe-1cdb96c6fee1_1080_1080",
+          "tahun": "2019",
+          "harga": "20",
+          "deskripsi": "motor mio keren",
+          "categoryId": "2",
+          "id": 8,
+          "stok": 5,
+          "category": {
+            "id": 2,
+            "nama": "motor"
+          },
+          "qty": 1
+        }
+      ],
+      "bankId": 0,
+      "bukti": "",
+      "id": 3
+    },
+    {
+      "userId": 2,
+      "tanggal": "2021-03-10T03:26:32.787Z",
+      "status": "batal",
+      "products": [
+        {
+          "name": "Terios",
+          "image": "https://imgcdnblog.carbay.com/wp-content/uploads/2020/09/23203511/Daihatsu-Terios-X-MT-500x333.jpg",
+          "tahun": "2020",
+          "harga": "200",
+          "deskripsi": "Mobil Terios mantap",
+          "categoryId": "1",
+          "id": 4,
+          "stok": 6,
+          "category": {
+            "id": 1,
+            "nama": "mobil"
+          },
+          "qty": 1
+        }
+      ],
+      "bankId": 0,
+      "bukti": "",
+      "id": 4
+    },
+    {
+      "userId": 2,
+      "tanggal": "2021-03-10T03:27:17.424Z",
+      "status": "belum bayar",
+      "products": [
+        {
+          "name": "Brio",
+          "image": "https://s4.bukalapak.com/uploads/content_attachment/4a311f3150e8d762483b77c5/w-744/lI1qp44gqRabTV2zH03x_honda_id_banner_web_brio_3_final_08c.jpg",
+          "tahun": "2020",
+          "harga": "120",
+          "deskripsi": "brio mobil semua orang",
+          "categoryId": "1",
+          "id": 10,
+          "stok": 5,
+          "category": {
+            "id": 1,
+            "nama": "mobil"
+          },
+          "qty": 1
+        }
+      ],
+      "bankId": 0,
+      "bukti": "",
+      "id": 5
+    },
+    {
+      "userId": 2,
+      "tanggal": "2021-03-10T03:27:43.222Z",
+      "status": "belum bayar",
+      "products": [
+        {
+          "name": "xenia",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/1/1b/2016_Daihatsu_Xenia_1.0_M_wagon_%28F650RV%3B_01-27-2019%29%2C_South_Tangerang.jpg",
+          "tahun": "2021",
+          "harga": "100",
+          "deskripsi": "mobil mantap",
+          "categoryId": "1",
+          "id": 5,
+          "stok": 5,
+          "category": {
+            "id": 1,
+            "nama": "mobil"
+          },
+          "qty": 1
+        },
+        {
+          "name": "supra x125",
+          "image": "https://awsimages.detik.net.id/community/media/visual/2020/09/01/honda-supra-x-125.jpeg?w=700&q=90",
+          "tahun": "2015",
+          "harga": "8",
+          "deskripsi": "Motor Honda Warna merah",
+          "categoryId": "2",
+          "id": 6,
+          "stok": 5,
+          "category": {
+            "id": 2,
+            "nama": "motor"
+          },
+          "qty": 1
+        }
+      ],
+      "bankId": 0,
+      "bukti": "",
+      "id": 6
     }
   ],
   "transactionsdetails": [],
